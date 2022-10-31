@@ -1,0 +1,35 @@
+<template>
+    <lightning-card>
+        <h3 slot="title">
+            <img src={logo} alt="logo" class="customLogo">
+            Weather Forecast
+        </h3>
+        <lightning-layout class="slds-m-around_small">
+            <lightning-layout-item flexibility="auto" class="slds-p-right_small">
+                <lightning-input type="text" 
+                    data-id="zip" 
+                    label="US-based zip code" 
+                    value={zip}
+                    pattern="^[0-9]{5}(?:-[0-9]{4})?$"
+                    message-when-pattern-mismatch="The value is not valid US zip code"
+                    onchange={handleZipChange}>
+                </lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item class="slds-p-top_large">
+                <lightning-button variant="brand" 
+                    label="Get Forecast" 
+                    title="Get Forecast" 
+                    onclick={handleGetForecastClick}
+                    disabled={isGetForecastDisabled}>
+                </lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+        <template if:true={weatherData}>
+            
+        </template>
+        <lightning-spinner if:true={isLoading} alternative-text="Loading" size="medium"></lightning-spinner>
+        <template if:true={lastSynced} slot="footer">
+            Last synced on: {lastSynced}
+        </template>
+    </lightning-card>
+</template>
