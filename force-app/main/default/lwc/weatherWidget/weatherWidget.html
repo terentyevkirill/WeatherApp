@@ -17,15 +17,16 @@
         <lightning-layout class="slds-m-around_small">
             <lightning-layout-item flexibility="auto" class="slds-p-right_small">
                 <lightning-input type="text" 
-                    data-id="zip" 
-                    label="US-based zip code" 
+                    data-id="zip"
+                    variant="label-hidden" 
+                    placeholder="Enter US zip code" 
                     value={zip}
                     pattern="^[0-9]{5}(?:-[0-9]{4})?$"
-                    message-when-pattern-mismatch="The value is not valid US zip code"
+                    message-when-pattern-mismatch="The value is not a valid US zip code"
                     onchange={handleZipChange}>
                 </lightning-input>
             </lightning-layout-item>
-            <lightning-layout-item class="slds-p-top_large">
+            <lightning-layout-item>
                 <lightning-button variant="brand" 
                     label="Get Forecast" 
                     title="Get Forecast" 
@@ -38,61 +39,52 @@
             <div class="slds-text-heading_medium  slds-align_absolute-center">
                 {location}
             </div>
-            <lightning-accordion allow-multiple-sections-open
-                onsectiontoggle={handleSectionToggle}
-                active-section-name={activeSections}>
-                <lightning-accordion-section name="Current" label="Current">
-                    <lightning-layout class="slds-m-around_small">
-                        <lightning-layout-item size="8" class="slds-p-right_small">
-                            <div class="slds-grid slds-wrap">
-                                <div class="slds-col slds-size_6-of-12">
-                                    <span>Temperature:</span>
-                                </div>
-                                <div class="slds-col slds-size_6-of-12">
-                                    <span>{temperature}</span>
-                                </div>
-                                <div class="slds-col slds-size_6-of-12">
-                                    <span>Feels like:</span>
-                                </div>
-                                <div class="slds-col slds-size_6-of-12">
-                                    <span>{feelsLike}</span>
-                                </div>
-                                <div class="slds-col slds-size_6-of-12">
-                                    <span>Precipation:</span>
-                                </div>
-                                <div class="slds-col slds-size_6-of-12">
-                                    <span>{precipation}</span>
-                                </div>
-                                <div class="slds-col slds-size_6-of-12">
-                                    <span>Humidity:</span>
-                                </div>
-                                <div class="slds-col slds-size_6-of-12">
-                                    <span>{humidity}</span>
-                                </div>
-                                <div class="slds-col slds-size_6-of-12">
-                                    <span>Wind:</span>
-                                </div>
-                                <div class="slds-col slds-size_6-of-12">
-                                    <span>{wind}</span>
-                                </div>
-                            </div>
-                        </lightning-layout-item>
-                        <lightning-layout-item size="4">
-                            <div class="slds-grid slds-grid_vertical">
-                                <div class="slds-col slds-align_absolute-center">
-                                  <span>{weatherText}</span>
-                                </div>
-                                <div class="slds-col slds-align_absolute-center">
-                                    <img src={weatherIcon} alt="weatherIcon" class="weatherIcon">
-                                </div>
-                            </div>
-                        </lightning-layout-item>
-                    </lightning-layout>
-                </lightning-accordion-section>
-                <lightning-accordion-section name="5-day forecast" label="5-day forecast">
-                    
-                </lightning-accordion-section>
-            </lightning-accordion>
+            <lightning-layout class="slds-m-around_small">
+                <lightning-layout-item size="8" class="slds-p-right_small">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_6-of-12">
+                            <span>Temperature:</span>
+                        </div>
+                        <div class="slds-col slds-size_6-of-12">
+                            <span>{temperature}</span>
+                        </div>
+                        <div class="slds-col slds-size_6-of-12">
+                            <span>Feels like:</span>
+                        </div>
+                        <div class="slds-col slds-size_6-of-12">
+                            <span>{feelsLike}</span>
+                        </div>
+                        <div class="slds-col slds-size_6-of-12">
+                            <span>Precipation:</span>
+                        </div>
+                        <div class="slds-col slds-size_6-of-12">
+                            <span>{precipation}</span>
+                        </div>
+                        <div class="slds-col slds-size_6-of-12">
+                            <span>Humidity:</span>
+                        </div>
+                        <div class="slds-col slds-size_6-of-12">
+                            <span>{humidity}</span>
+                        </div>
+                        <div class="slds-col slds-size_6-of-12">
+                            <span>Wind:</span>
+                        </div>
+                        <div class="slds-col slds-size_6-of-12">
+                            <span>{wind}</span>
+                        </div>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="4">
+                    <div class="slds-grid slds-grid_vertical">
+                        <div class="slds-col slds-align_absolute-center">
+                          <span>{weatherText}</span>
+                        </div>
+                        <div class="slds-col slds-align_absolute-center">
+                            <img src={weatherData.current.condition.icon} alt="weatherIcon" class="weatherIcon">
+                        </div>
+                    </div>
+                </lightning-layout-item>
+            </lightning-layout>
             <div slot="footer">
                 <p>Local time: {localTime}</p>
                 <p>Last updated: {lastUpdated}</p>

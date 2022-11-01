@@ -2,9 +2,13 @@
 private class WeatherApiServiceTest {
     private static final String TEST_ZIP = '94105';
     private static final String TEST_API_KEY = '12345';
+    private static final String TEST_ENDPOINT = 'http://api.weatherapi.com/v1/current.json?key={0}&q={1}';
 
     static void setup() {
-        WeatherApiConfig__c config = new WeatherApiConfig__c(ApiKey__c = TEST_API_KEY);
+        WeatherApiConfig__c config = new WeatherApiConfig__c(
+            ApiKey__c = TEST_API_KEY,
+            Endpoint__c = TEST_ENDPOINT
+        );
         insert config;
     }
 
@@ -34,7 +38,7 @@ private class WeatherApiServiceTest {
         }
         Test.stopTest();
         System.assertNotEquals(null, ex);
-        System.assertEquals(WeatherApiService.API_KEY_MISSING, ex.getMessage());
+        System.assertEquals(WeatherApiService.API_KEY_OR_ENDPOINT_MISSING, ex.getMessage());
     }
 
     @isTest

@@ -13,11 +13,15 @@ public with sharing class WeatherApiResponseWrapper {
         public String region;
         @AuraEnabled
         public String localtime;
+        @AuraEnabled
+        public Long localtime_epoch;
     }
 
     public class CurrentWrapper {
         @AuraEnabled
         public String last_updated;
+        @AuraEnabled
+        public Long last_updated_epoch;
         @AuraEnabled
         public Decimal temp_c;
         @AuraEnabled
