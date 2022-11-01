@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Endpoint__c</fullName>
-    <defaultValue>&apos;http://api.weatherapi.com/v1/current.json?key={0}&amp;q={1}&apos;</defaultValue>
     <externalId>false</externalId>
     <label>Endpoint</label>
     <length>255</length>
