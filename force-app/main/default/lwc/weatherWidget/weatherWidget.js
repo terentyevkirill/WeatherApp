@@ -56,7 +56,7 @@ export default class WeatherWidget extends LightningElement {
         let result;
         if (this.weatherData && this.weatherData.current) {
             result = this.isMetric ? this.weatherData.current.temp_c : this.weatherData.current.temp_f;
-            result += this.isMetric ? '°C' : '°F';
+            result += this.isMetric ? ' °C' : ' °F';
         }
         return result;
     }
@@ -65,7 +65,7 @@ export default class WeatherWidget extends LightningElement {
         let result;
         if (this.weatherData && this.weatherData.current) {
             result = this.isMetric ? this.weatherData.current.feelslike_c : this.weatherData.current.feelslike_f;
-            result += this.isMetric ? '°C' : '°F';
+            result += this.isMetric ? ' °C' : ' °F';
         }
         return result;
     }
@@ -89,7 +89,7 @@ export default class WeatherWidget extends LightningElement {
         let result;
         if (this.weatherData && this.weatherData.current) {
             result = this.isMetric ? this.weatherData.current.wind_kph : this.weatherData.current.wind_mph;
-            result += this.isMetric ? ' km/h' : ' m/h';
+            result += this.isMetric ? ' kmph' : ' mph';
         }
         return result;
     }
@@ -116,6 +116,18 @@ export default class WeatherWidget extends LightningElement {
         if (this.weatherData && this.weatherData.current) {
             return this.weatherData.current.last_updated;
         }
+    }
+
+    get forecastData() {
+        let forecastData = [];
+        if (this.weatherData.forecast && this.weatherData.forecast.forecastday) {
+            this.weatherData.forecast.forecastday.forEach(day => {
+                let forecastday = {...day};
+                forecastday.day.date = new Date(day.day.date_epoch).toString().substring(0, str.indexOf(' '));
+                forecastData.push(forecastday);
+            });
+        }
+        return forecastData;
     }
 
     showToast(title, message, variant) {

@@ -1,5 +1,5 @@
 public with sharing class WeatherApiService {
-    private static final String CURRENT_ENDPOINT = 'http://api.weatherapi.com/v1/current.json?key={0}&q={1}'; 
+    private static final String CURRENT_ENDPOINT = 'http://api.weatherapi.com/v1/forecast.json?key={0}&q={1}&days=5'; 
     private static final String GET_METHOD = 'GET';
     private static final String UTF8_ENCODING_SCHEME = 'UTF-8';
     

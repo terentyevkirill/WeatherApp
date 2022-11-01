@@ -80,17 +80,31 @@
                         <lightning-layout-item size="4">
                             <div class="slds-grid slds-grid_vertical">
                                 <div class="slds-col slds-align_absolute-center">
-                                  <span>{weatherText}</span>
+                                <span>{weatherText}</span>
                                 </div>
                                 <div class="slds-col slds-align_absolute-center">
-                                    <img src={weatherIcon} alt="weatherIcon" class="weatherIcon">
+                                    <img src={weatherData.current.condition.icon} alt="weatherIcon" class="weatherIcon">
                                 </div>
                             </div>
                         </lightning-layout-item>
                     </lightning-layout>
                 </lightning-accordion-section>
                 <lightning-accordion-section name="5-day forecast" label="5-day forecast">
-                    
+                    <div class="days-container">
+                        <template if:true={forecastData} for:each={forecastData} for:item="day">
+                            <div key={day.date} class="day-block slds-grid slds-grid_vertical slds-box_border slds-m-horizontal_x-small">
+                                <div class="slds-col slds-align_absolute-center">
+                                    <span>{day.date}</span>
+                                </div>
+                                <div class="slds-col slds-align_absolute-center">
+                                    <img src={day.day.condition.icon} alt="weatherIcon" class="weatherIcon">
+                                </div>
+                                <div class="slds-col slds-align_absolute-center">
+                                    <span>{day.day.avgtemp_f}</span>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
                 </lightning-accordion-section>
             </lightning-accordion>
             <div slot="footer">

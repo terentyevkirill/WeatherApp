@@ -4,6 +4,8 @@ public with sharing class WeatherApiResponseWrapper {
     @AuraEnabled
     public CurrentWrapper current;
     @AuraEnabled
+    public ForecastWrapper forecast;
+    @AuraEnabled
     public ErrorWrapper error;
 
     public class LocationWrapper {
@@ -45,6 +47,47 @@ public with sharing class WeatherApiResponseWrapper {
         public String text;
         @AuraEnabled
         public String icon;
+    }
+
+    public class ForecastWrapper {
+        @AuraEnabled
+        public List<ForecastDayWrapper> forecastday;
+    }
+
+    public class ForecastDayWrapper {
+        @AuraEnabled
+        public Long date_epoch;
+        @AuraEnabled
+        public DayWrapper day;
+        @AuraEnabled
+        public String dateT;
+    }
+
+    public class DayWrapper {
+        @AuraEnabled
+        public Decimal maxtemp_c;
+        @AuraEnabled
+        public Decimal maxtemp_f;
+        @AuraEnabled
+        public Decimal mintemp_c;
+        @AuraEnabled
+        public Decimal mintemp_f;
+        @AuraEnabled
+        public Decimal avgtemp_c;
+        @AuraEnabled
+        public Decimal avgtemp_f;
+        @AuraEnabled
+        public Decimal maxwind_mph;
+        @AuraEnabled
+        public Decimal maxwind_kph;
+        @AuraEnabled
+        public Decimal totalprecip_mm;
+        @AuraEnabled
+        public Decimal totalprecip_in;
+        @AuraEnabled
+        public Decimal avghumidity;
+        @AuraEnabled
+        public ConditionWrapper condition;
     }
 
     public class ErrorWrapper {
